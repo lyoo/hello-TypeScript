@@ -1,15 +1,11 @@
-for (let i = 0; i <= 10; i++) {
-  console.log(i);
+function add(a: number, b: number) {
+  return a + b;
 }
 
-// 定义类型和复制
-// let my_name: string = "marsliang";
-// var my_name: string = "marsliang";
-let my_name: string = "marsliang";
-console.log("my name is " + my_name);
+const add2 = (a: number, b: number) => {
+  return a + b;
+};
 
-// 无法重新声明块范围变量“my_name”
-// let my_name: string = "lyoo";
-// var my_name: number = 111;
-my_name = "lyoo";
-console.log(`my name is " + ${my_name}`);
+// const sum = add(10, 20);
+const sum = add2(10, 20);
+console.log(sum);
