@@ -1,29 +1,18 @@
-function isNumber(value) {
-    // 可以进行进一步判断
-    return typeof value === "number";
-}
-function isString(value) {
-    return typeof value === "string";
-}
-// const log = (value: any) => {
-//   console.log(typeof value);
-//   if (isNumber(value)) {
-//     return "your number is " + value;
-//   }
-//   if (typeof value === "string") {
-//     return "your string is " + value;
-//   }
-//   throw new Error("Expected string or number, got " + value);
-// };
-var log = function (value) {
-    console.log(typeof value);
-    if (isNumber(value)) {
-        return "your number is " + value;
+var Person = /** @class */ (function () {
+    function Person() {
     }
-    if (typeof value === "string") {
-        return "your string is " + value;
+    return Person;
+}());
+// 生成一个对象
+var aPerson = new Person();
+// 设置 firstName 的内容
+aPerson.firstName = "marsliang";
+// aPerson.firstName = 10;
+// 读取 firstName 的内容
+console.log(aPerson.firstName);
+var Movie = /** @class */ (function () {
+    function Movie() {
     }
-};
-console.log(log("marsliang"));
-console.log(log(12));
-// console.log(log([1, 2, 3]));
+    return Movie;
+}());
+var m = new Movie();

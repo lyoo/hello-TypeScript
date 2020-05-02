@@ -1,32 +1,24 @@
-function isNumber(value: any): value is number {
-  // 可以进行进一步判断
-  return typeof value === "number";
+class Person {
+  // 定义2个数据内容
+  firstName: string;
+  lastName: string;
 }
 
-function isString(value: any): value is string {
-  return typeof value === "string";
+// 生成一个对象
+let aPerson = new Person();
+
+// 设置 firstName 的内容
+aPerson.firstName = "marsliang";
+// aPerson.firstName = 10;
+
+// 读取 firstName 的内容
+console.log(aPerson.firstName);
+
+class Movie {
+  name: string;
+  play_count: number;
+  created_at: string;
+  time: string;
 }
 
-// const log = (value: any) => {
-//   console.log(typeof value);
-//   if (isNumber(value)) {
-//     return "your number is " + value;
-//   }
-//   if (typeof value === "string") {
-//     return "your string is " + value;
-//   }
-//   throw new Error("Expected string or number, got " + value);
-// };
-
-const log = (value: string | number | null) => {
-  console.log(typeof value);
-  if (isNumber(value)) {
-    return "your number is " + value;
-  }
-  if (typeof value === "string") {
-    return "your string is " + value;
-  }
-};
-console.log(log("marsliang"));
-console.log(log(12));
-// console.log(log([1, 2, 3]));
+let m = new Movie();
