@@ -1,17 +1,12 @@
-// const add = (a: number, b: number): number => {
-//   return a + b;
-// };
-// const add = (a: number, b: number): string => {
-//   return a.toString() + b.toString();
-// };
-var add = function (a, b) {
-    if (b) {
-        console.log(a + b);
+var add = function (a) {
+    var num = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        num[_i - 1] = arguments[_i];
     }
-    else {
-        console.log(a);
-    }
+    return num.reduce(function (total, num) {
+        return total + num;
+    }, a);
 };
 // const sum = add(10, 20);
-var sum = add(10, 30);
+var sum = add(10, 30, 20, 30, 10);
 console.log(sum);
