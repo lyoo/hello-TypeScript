@@ -1,7 +1,14 @@
 class Person {
   // 定义2个数据内容
-  private firstName: string;
-  private lastName: string;
+  // private firstName: string;
+  // private lastName: string;
+  protected firstName: string;
+  protected lastName: string;
+
+  constructor() {
+    this.firstName = "marsliang";
+    this.lastName = "lyoo";
+  }
 
   public greet() {
     console.log("hi");
@@ -16,12 +23,20 @@ class Person {
     console.log("******");
   }
 
-  getFirstName() {
-    console.log(this.firstName);
+  protected getFirstName() {
+    return this.firstName;
+  }
+
+  getLastName() {
+    return this.lastName;
   }
 
   setFirstName(firstName: string) {
     this.firstName = firstName;
+  }
+
+  setLastName(lastName: string) {
+    this.lastName = lastName;
   }
 
   public othergreet() {
@@ -30,9 +45,45 @@ class Person {
   }
 }
 
-let aPerson = new Person();
+// let aPerson = new Person();
 // console.log(aPerson.firstName);
-aPerson.setFirstName("marsliang");
-aPerson.getFirstName();
+// aPerson.setFirstName("marsliang");
+// aPerson.getFirstName();
+// aPerson.callSayHi();
 
-aPerson.callSayHi();
+class Programmer extends Person {
+  public greet() {
+    console.log("hello world");
+  }
+
+  public greetLikeNormalPeople() {
+    super.greet();
+  }
+
+  // public getFullName(): string {
+  //   return `${this.firstName} ${this.lastName}`;
+  // }
+
+  getSuperFirstName(): string {
+    return this.getFirstName();
+  }
+
+  getSuperLastName(): string {
+    return this.lastName;
+  }
+
+  // getFirstName 和 getLastName 继承而来
+  // public getFullName(): string {
+  //   return `${this.getFirstName()} ${this.getLastName()}`;
+  // }
+
+  public getFullName(): string {
+    return `${this.getSuperFirstName()} ${this.getSuperLastName()}`;
+  }
+}
+
+let aProgrammer = new Programmer();
+// console.log(aProgrammer.firstName);
+// aProgrammer.getFirstName();
+// console.log(aProgrammer.getFullName());
+console.log(aProgrammer.getSuperFirstName());
