@@ -1,16 +1,3 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var Person = /** @class */ (function () {
     // static all() {
     //  // Person 对应数据库的一个表模型
@@ -19,6 +6,8 @@ var Person = /** @class */ (function () {
     //  return Person.select().all();
     // }
     function Person(firstName, lastName) {
+        // 只读属性 不能修改
+        this.name = "marsliang";
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -59,44 +48,42 @@ var Person = /** @class */ (function () {
     Person.age = 10;
     return Person;
 }());
-var Programmer = /** @class */ (function (_super) {
-    __extends(Programmer, _super);
-    function Programmer(firstName, lastName) {
-        var _this = 
-        // 调用父类的构造函数的方法，要传入参数
-        _super.call(this, firstName, lastName) || this;
-        console.log("Programmer constructor");
-        return _this;
-    }
-    Programmer.getSuperAge = function () {
-        return "super age is " + Programmer.age;
-    };
-    Programmer.prototype.greet = function () {
-        console.log("hello world");
-    };
-    Programmer.prototype.greetLikeNormalPeople = function () {
-        _super.prototype.greet.call(this);
-    };
-    // public getFullName(): string {
-    //   return `${this.firstName} ${this.lastName}`;
-    // }
-    Programmer.prototype.getSuperFirstName = function () {
-        return this.getFirstName();
-    };
-    Programmer.prototype.getSuperLastName = function () {
-        return this.lastName;
-    };
-    // getFirstName 和 getLastName 继承而来
-    // public getFullName(): string {
-    //   return `${this.getFirstName()} ${this.getLastName()}`;
-    // }
-    Programmer.prototype.getFullName = function () {
-        return this.getSuperFirstName() + " " + this.getSuperLastName();
-    };
-    return Programmer;
-}(Person));
-// let aPerson = new Person("marsliang", "lyoo");
-var aProgrammer = new Programmer("marsliang", "lyoo");
+// class Programmer extends Person {
+//   constructor(firstName: string, lastName: string) {
+//     // 调用父类的构造函数的方法，要传入参数
+//     super(firstName, lastName);
+//     console.log("Programmer constructor");
+//   }
+//   public static getSuperAge() {
+//     return `super age is ${Programmer.age}`;
+//   }
+//   public greet() {
+//     console.log("hello world");
+//   }
+//   public greetLikeNormalPeople() {
+//     super.greet();
+//   }
+//   // public getFullName(): string {
+//   //   return `${this.firstName} ${this.lastName}`;
+//   // }
+//   getSuperFirstName(): string {
+//     return this.getFirstName();
+//   }
+//   getSuperLastName(): string {
+//     return this.lastName;
+//   }
+//   // getFirstName 和 getLastName 继承而来
+//   // public getFullName(): string {
+//   //   return `${this.getFirstName()} ${this.getLastName()}`;
+//   // }
+//   public getFullName(): string {
+//     return `${this.getSuperFirstName()} ${this.getSuperLastName()}`;
+//   }
+// }
+var aPerson = new Person("marsliang", "lyoo");
+aPerson.name = "111";
+console.log(aPerson.name);
+// let aProgrammer = new Programmer("marsliang", "lyoo");
 // console.log(aPerson.getAge());
 // console.log(Person.getStaticAge());
-console.log(Programmer.getSuperAge());
+// console.log(Programmer.getSuperAge());

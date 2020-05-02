@@ -3,6 +3,9 @@ class Person {
   protected firstName: string;
   protected lastName: string;
 
+  // 只读属性 不能修改
+  readonly name: string = "marsliang";
+
   // 静态属性
   protected static age: number = 10;
 
@@ -62,49 +65,51 @@ class Person {
   }
 }
 
-class Programmer extends Person {
-  constructor(firstName: string, lastName: string) {
-    // 调用父类的构造函数的方法，要传入参数
-    super(firstName, lastName);
-    console.log("Programmer constructor");
-  }
+// class Programmer extends Person {
+//   constructor(firstName: string, lastName: string) {
+//     // 调用父类的构造函数的方法，要传入参数
+//     super(firstName, lastName);
+//     console.log("Programmer constructor");
+//   }
 
-  public static getSuperAge() {
-    return `super age is ${Programmer.age}`;
-  }
+//   public static getSuperAge() {
+//     return `super age is ${Programmer.age}`;
+//   }
 
-  public greet() {
-    console.log("hello world");
-  }
+//   public greet() {
+//     console.log("hello world");
+//   }
 
-  public greetLikeNormalPeople() {
-    super.greet();
-  }
+//   public greetLikeNormalPeople() {
+//     super.greet();
+//   }
 
-  // public getFullName(): string {
-  //   return `${this.firstName} ${this.lastName}`;
-  // }
+//   // public getFullName(): string {
+//   //   return `${this.firstName} ${this.lastName}`;
+//   // }
 
-  getSuperFirstName(): string {
-    return this.getFirstName();
-  }
+//   getSuperFirstName(): string {
+//     return this.getFirstName();
+//   }
 
-  getSuperLastName(): string {
-    return this.lastName;
-  }
+//   getSuperLastName(): string {
+//     return this.lastName;
+//   }
 
-  // getFirstName 和 getLastName 继承而来
-  // public getFullName(): string {
-  //   return `${this.getFirstName()} ${this.getLastName()}`;
-  // }
+//   // getFirstName 和 getLastName 继承而来
+//   // public getFullName(): string {
+//   //   return `${this.getFirstName()} ${this.getLastName()}`;
+//   // }
 
-  public getFullName(): string {
-    return `${this.getSuperFirstName()} ${this.getSuperLastName()}`;
-  }
-}
+//   public getFullName(): string {
+//     return `${this.getSuperFirstName()} ${this.getSuperLastName()}`;
+//   }
+// }
 
-// let aPerson = new Person("marsliang", "lyoo");
-let aProgrammer = new Programmer("marsliang", "lyoo");
+let aPerson = new Person("marsliang", "lyoo");
+aPerson.name = "111";
+console.log(aPerson.name);
+// let aProgrammer = new Programmer("marsliang", "lyoo");
 // console.log(aPerson.getAge());
 // console.log(Person.getStaticAge());
-console.log(Programmer.getSuperAge());
+// console.log(Programmer.getSuperAge());
