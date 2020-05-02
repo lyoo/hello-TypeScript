@@ -3,9 +3,28 @@ class Person {
   protected firstName: string;
   protected lastName: string;
 
-  protected constructor(firstName: string, lastName: string) {
+  // 静态属性
+  protected static age: number = 10;
+
+  // 静态方法
+  public static getStaticAge() {
+    return `my age is ${Person.age}`;
+  }
+
+  // static all() {
+  //  // Person 对应数据库的一个表模型
+  //  // 可以列出 persons 表的所有记录
+  //  // new 出来的可能是一条记录，要找到所有记录，可能要通过静态方法
+  //  return Person.select().all();
+  // }
+
+  public constructor(firstName: string, lastName: string) {
     this.firstName = firstName;
     this.lastName = lastName;
+  }
+
+  getAge() {
+    return `my age is ${Person.age}`;
   }
 
   public greet() {
@@ -44,14 +63,18 @@ class Person {
 }
 
 class Programmer extends Person {
-  public greet() {
-    console.log("hello world");
-  }
-
   constructor(firstName: string, lastName: string) {
     // 调用父类的构造函数的方法，要传入参数
     super(firstName, lastName);
     console.log("Programmer constructor");
+  }
+
+  public static getSuperAge() {
+    return `super age is ${Programmer.age}`;
+  }
+
+  public greet() {
+    console.log("hello world");
   }
 
   public greetLikeNormalPeople() {
@@ -82,3 +105,6 @@ class Programmer extends Person {
 
 // let aPerson = new Person("marsliang", "lyoo");
 let aProgrammer = new Programmer("marsliang", "lyoo");
+// console.log(aPerson.getAge());
+// console.log(Person.getStaticAge());
+console.log(Programmer.getSuperAge());

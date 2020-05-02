@@ -12,10 +12,23 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 var Person = /** @class */ (function () {
+    // static all() {
+    //  // Person 对应数据库的一个表模型
+    //  // 可以列出 persons 表的所有记录
+    //  // new 出来的可能是一条记录，要找到所有记录，可能要通过静态方法
+    //  return Person.select().all();
+    // }
     function Person(firstName, lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+    // 静态方法
+    Person.getStaticAge = function () {
+        return "my age is " + Person.age;
+    };
+    Person.prototype.getAge = function () {
+        return "my age is " + Person.age;
+    };
     Person.prototype.greet = function () {
         console.log("hi");
     };
@@ -42,6 +55,8 @@ var Person = /** @class */ (function () {
         this.greet();
         console.log("******");
     };
+    // 静态属性
+    Person.age = 10;
     return Person;
 }());
 var Programmer = /** @class */ (function (_super) {
@@ -53,6 +68,9 @@ var Programmer = /** @class */ (function (_super) {
         console.log("Programmer constructor");
         return _this;
     }
+    Programmer.getSuperAge = function () {
+        return "super age is " + Programmer.age;
+    };
     Programmer.prototype.greet = function () {
         console.log("hello world");
     };
@@ -79,3 +97,6 @@ var Programmer = /** @class */ (function (_super) {
 }(Person));
 // let aPerson = new Person("marsliang", "lyoo");
 var aProgrammer = new Programmer("marsliang", "lyoo");
+// console.log(aPerson.getAge());
+// console.log(Person.getStaticAge());
+console.log(Programmer.getSuperAge());
