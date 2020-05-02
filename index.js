@@ -1,17 +1,20 @@
-var add = function (a) {
-    var num = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        num[_i - 1] = arguments[_i];
+var a;
+a = 10;
+a = "lyoo";
+a = [1, 2, 3];
+var log = function (value) {
+    console.log(typeof value);
+    if (typeof value === "number") {
+        return "your number is " + value;
     }
-    return num.reduce(function (total, num) {
-        return total + num;
-    }, a);
+    if (typeof value === "string") {
+        return "your string is " + value;
+    }
+    throw new Error("Expected string or number, got " + value);
 };
-// const sum = add(10, 20);
-var sum = add(10, 30, 20, 30, 10);
-console.log(sum);
-var numArr = [1, 2, 3, 4, 5];
-function getSum(total, num) {
-    return total + num;
-}
-console.log(numArr.reduce(getSum));
+console.log(log("marsliang"));
+console.log(log(12));
+console.log(log([1, 2, 3]));
+var b;
+// b = "10";
+b = [1, "2", [1]];

@@ -1,15 +1,26 @@
-const add = (a: number, ...num: number[]): number => {
-  return num.reduce(function (total, num) {
-    return total + num;
-  }, a);
+let a: any;
+
+a = 10;
+a = "lyoo";
+a = [1, 2, 3];
+
+const log = (value: any) => {
+  console.log(typeof value);
+  if (typeof value === "number") {
+    return `your number is ${value}`;
+  }
+
+  if (typeof value === "string") {
+    return `your string is ${value}`;
+  }
+
+  throw new Error(`Expected string or number, got ${value}`);
 };
 
-// const sum = add(10, 20);
-const sum = add(10, 30, 20, 30, 10);
-console.log(sum);
+console.log(log("marsliang"));
+console.log(log(12));
+console.log(log([1, 2, 3]));
 
-const numArr = [1, 2, 3, 4, 5];
-function getSum(total: number, num: number) {
-  return total + num;
-}
-console.log(numArr.reduce(getSum));
+let b: any[];
+// b = "10";
+b = [1, "2", [1]];
