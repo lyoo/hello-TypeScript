@@ -3,7 +3,7 @@
 // 代码可读性强
 // 可能会常用下拉框等应用
 enum DaysOfTheWeek {
-  SUN,
+  SUN = 100,
   MON,
   TUE,
   WED,

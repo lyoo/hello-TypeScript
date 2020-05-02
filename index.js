@@ -4,13 +4,13 @@
 // 可能会常用下拉框等应用
 var DaysOfTheWeek;
 (function (DaysOfTheWeek) {
-    DaysOfTheWeek[DaysOfTheWeek["SUN"] = 0] = "SUN";
-    DaysOfTheWeek[DaysOfTheWeek["MON"] = 1] = "MON";
-    DaysOfTheWeek[DaysOfTheWeek["TUE"] = 2] = "TUE";
-    DaysOfTheWeek[DaysOfTheWeek["WED"] = 3] = "WED";
-    DaysOfTheWeek[DaysOfTheWeek["THU"] = 4] = "THU";
-    DaysOfTheWeek[DaysOfTheWeek["FRI"] = 5] = "FRI";
-    DaysOfTheWeek[DaysOfTheWeek["SAT"] = 6] = "SAT";
+    DaysOfTheWeek[DaysOfTheWeek["SUN"] = 100] = "SUN";
+    DaysOfTheWeek[DaysOfTheWeek["MON"] = 101] = "MON";
+    DaysOfTheWeek[DaysOfTheWeek["TUE"] = 102] = "TUE";
+    DaysOfTheWeek[DaysOfTheWeek["WED"] = 103] = "WED";
+    DaysOfTheWeek[DaysOfTheWeek["THU"] = 104] = "THU";
+    DaysOfTheWeek[DaysOfTheWeek["FRI"] = 105] = "FRI";
+    DaysOfTheWeek[DaysOfTheWeek["SAT"] = 106] = "SAT";
 })(DaysOfTheWeek || (DaysOfTheWeek = {}));
 var day;
 day = DaysOfTheWeek.MON;
