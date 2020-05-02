@@ -1,48 +1,50 @@
-// 传过来的参数必须包含接口的属性和方法
-interface Named {
-  // 属性
+// 定义类型别名 type alias
+// 以后就可以用 Name 类型 代替 string 类型
+type Name = string;
+// type Name = [string, number];
+
+let myName: Name = "marsliang";
+// let myName: Name = ["marsliang", 18];
+
+// console.log(myName);
+// 不能重复定义
+type User = {
   name: string;
-
-  // 方法
-  // 没有方法体
-  // 具体的对象中实现方法体
-  print(name: string): void;
-}
-
-// 只要传入参数o 有 name  属性
-// o 可以是一个接口类型，这个接口类型要有 name 属性
-// 定义 o 为接口类型, 可以传入一个对象
-const sayName = (o: Named) => {
-  console.log(o.name);
+  age: number;
+  print(): void;
 };
 
-// 对象
-const person = {
-  name: "lyoo",
-  age: 18,
-  print: (name) => {
-    console.log(name);
+// const user: User = {
+//   name: "marsliang",
+//   age: 27,
+// };
+
+// const user: { name: string; age: number } = {
+//   name: "marsliang",
+//   age: 18,
+// };
+
+const user: User = {
+  name: "marsliang",
+  age: 27,
+  print: () => {
+    console.log("xxx");
   },
 };
 
-sayName(person);
+console.log("user: ", user);
 
-// const bottle = {
-//   name: "漂流瓶",
-//   litres: 1,
-// };
-
-class Person {
+interface IUser {
   name: string;
-
-  print(name: string): void {
-    console.log(name);
-  }
+  age: number;
 }
 
-let aPerson = new Person();
-aPerson.name = "marsliang";
+interface IUser {
+  email: string;
+}
 
-sayName(aPerson);
-
-// sayName(bottle);
+const other_user: IUser = {
+  name: "marsliang",
+  age: 18,
+  email: "32499@qq.com",
+};
