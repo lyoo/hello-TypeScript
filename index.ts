@@ -65,6 +65,8 @@ class AliPay implements Pay {
   post() {}
 }
 
+// 其他接口
+
 let wePay: Pay = new WePay();
 let aliPay: Pay = new AliPay();
 
