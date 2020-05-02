@@ -7,3 +7,9 @@ const add = (a: number, ...num: number[]): number => {
 // const sum = add(10, 20);
 const sum = add(10, 30, 20, 30, 10);
 console.log(sum);
+
+const numArr = [1, 2, 3, 4, 5];
+function getSum(total: number, num: number) {
+  return total + num;
+}
+console.log(numArr.reduce(getSum));

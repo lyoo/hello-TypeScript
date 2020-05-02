@@ -10,3 +10,8 @@ var add = function (a) {
 // const sum = add(10, 20);
 var sum = add(10, 30, 20, 30, 10);
 console.log(sum);
+var numArr = [1, 2, 3, 4, 5];
+function getSum(total, num) {
+    return total + num;
+}
+console.log(numArr.reduce(getSum));
