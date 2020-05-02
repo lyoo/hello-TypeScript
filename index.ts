@@ -1,13 +1,11 @@
 class Person {
   // 定义2个数据内容
-  // private firstName: string;
-  // private lastName: string;
   protected firstName: string;
   protected lastName: string;
 
-  constructor() {
-    this.firstName = "marsliang";
-    this.lastName = "lyoo";
+  protected constructor(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   public greet() {
@@ -45,15 +43,15 @@ class Person {
   }
 }
 
-// let aPerson = new Person();
-// console.log(aPerson.firstName);
-// aPerson.setFirstName("marsliang");
-// aPerson.getFirstName();
-// aPerson.callSayHi();
-
 class Programmer extends Person {
   public greet() {
     console.log("hello world");
+  }
+
+  constructor(firstName: string, lastName: string) {
+    // 调用父类的构造函数的方法，要传入参数
+    super(firstName, lastName);
+    console.log("Programmer constructor");
   }
 
   public greetLikeNormalPeople() {
@@ -82,8 +80,5 @@ class Programmer extends Person {
   }
 }
 
-let aProgrammer = new Programmer();
-// console.log(aProgrammer.firstName);
-// aProgrammer.getFirstName();
-// console.log(aProgrammer.getFullName());
-console.log(aProgrammer.getSuperFirstName());
+// let aPerson = new Person("marsliang", "lyoo");
+let aProgrammer = new Programmer("marsliang", "lyoo");

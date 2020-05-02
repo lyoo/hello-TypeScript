@@ -12,9 +12,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 var Person = /** @class */ (function () {
-    function Person() {
-        this.firstName = "marsliang";
-        this.lastName = "lyoo";
+    function Person(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
     Person.prototype.greet = function () {
         console.log("hi");
@@ -44,15 +44,14 @@ var Person = /** @class */ (function () {
     };
     return Person;
 }());
-// let aPerson = new Person();
-// console.log(aPerson.firstName);
-// aPerson.setFirstName("marsliang");
-// aPerson.getFirstName();
-// aPerson.callSayHi();
 var Programmer = /** @class */ (function (_super) {
     __extends(Programmer, _super);
-    function Programmer() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function Programmer(firstName, lastName) {
+        var _this = 
+        // 调用父类的构造函数的方法，要传入参数
+        _super.call(this, firstName, lastName) || this;
+        console.log("Programmer constructor");
+        return _this;
     }
     Programmer.prototype.greet = function () {
         console.log("hello world");
@@ -78,8 +77,5 @@ var Programmer = /** @class */ (function (_super) {
     };
     return Programmer;
 }(Person));
-var aProgrammer = new Programmer();
-// console.log(aProgrammer.firstName);
-// aProgrammer.getFirstName();
-// console.log(aProgrammer.getFullName());
-console.log(aProgrammer.getSuperFirstName());
+// let aPerson = new Person("marsliang", "lyoo");
+var aProgrammer = new Programmer("marsliang", "lyoo");
