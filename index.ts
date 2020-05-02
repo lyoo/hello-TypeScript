@@ -1,50 +1,72 @@
-// 定义类型别名 type alias
-// 以后就可以用 Name 类型 代替 string 类型
-type Name = string;
-// type Name = [string, number];
-
-let myName: Name = "marsliang";
-// let myName: Name = ["marsliang", 18];
-
-// console.log(myName);
-// 不能重复定义
-type User = {
+// 接口
+interface Person {
   name: string;
-  age: number;
-  print(): void;
-};
 
-// const user: User = {
-//   name: "marsliang",
-//   age: 27,
-// };
-
-// const user: { name: string; age: number } = {
-//   name: "marsliang",
-//   age: 18,
-// };
-
-const user: User = {
-  name: "marsliang",
-  age: 27,
-  print: () => {
-    console.log("xxx");
-  },
-};
-
-console.log("user: ", user);
-
-interface IUser {
-  name: string;
-  age: number;
+  greet(): void;
 }
 
-interface IUser {
-  email: string;
+const sayName = (o: Person) => {
+  o.greet();
+};
+
+// 实现接口 微信支付 支付宝支付
+
+// 类实现接口
+class Employee implements Person {
+  name: string;
+
+  greet(): void {
+    console.log("I am employee");
+  }
 }
 
-const other_user: IUser = {
-  name: "marsliang",
-  age: 18,
-  email: "32499@qq.com",
+class Customer implements Person {
+  public name: string;
+  public email: string;
+  greet(): void {
+    console.log("I am customer");
+  }
+}
+
+// let cu = new Customer();
+// cu.greet();
+// sayName(cu);
+
+// let em = new Employee();
+// em.greet();
+// sayName(em);
+
+let customer: Person = new Customer();
+customer.greet();
+
+let employee: Person = new Employee();
+employee.greet();
+
+// 支付接口
+interface Pay {
+  post(): void;
+}
+
+// 可能会发送 http 请求
+// 真正支付的请求
+const doPay = (pay: Pay) => {
+  // 有一些逻辑
+  pay.post();
 };
+
+// 微信支付
+class WePay implements Pay {
+  // 微信支付宝支付接口
+  post() {}
+}
+
+// 支付宝支付
+class AliPay implements Pay {
+  post() {}
+}
+
+let wePay: Pay = new WePay();
+let aliPay: Pay = new AliPay();
+
+doPay(wePay);
+doPay(aliPay);
