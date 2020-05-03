@@ -70,4 +70,5 @@ let c1: NestedCss = {
   color: "red",
 };
 
+console.log("example: ", example);
 console.log("c1: ", c1);
