@@ -3,30 +3,26 @@ interface Person {
   readonly firstName: string;
   lastName?: string;
 
-  print?(): void;
+  print(callback: PrintCallback): void;
 }
+
+interface PrintCallback {
+  // 可以理解为匿名函数
+  (success: boolean): void;
+}
+
+let printCallback: PrintCallback;
+printCallback = (suc: boolean): void => {
+  console.log("callback ", suc);
+};
 
 let person: Person = {
   firstName: "marsliang",
   // lastName: "lyoo",
+  print: (callback: PrintCallback): void => {
+    console.log("hello");
+    callback(true);
+  },
 };
 
-person.firstName = "lyoo";
-
-class Programmer implements Person {
-  firstName: string;
-}
-
-const programmer: Person = new Programmer();
-programmer.firstName = "mars";
-
-// const sayName = (o: Person) => {
-//   console.log(o.firstName);
-// };
-
-// sayName(person);
-
-// sayName(programmer);
-
-// 类型断言
-// sayName({ firstName: "a", lastName: "b", age: 18 } as Person);
+person.print(printCallback);
