@@ -1,117 +1,65 @@
-// 打印机 A
-class PrinterA {
-  // name: string
-  // type => 字符串，标识类型
-  pageOrientation: "landscape";
+// function getArray(items: any[]): any[] {
+//   return new Array().concat(items);
+// }
 
-  // type(): string {
-  //  return "landscape";
-  // }
+// let myNumArray = getArray([100, 200, 300]);
+// let myStrArray = getArray(["hello", "world"]);
 
-  // 风景画
-  printLandscape(): void {
-    console.log("printing in landscape");
-  }
+// console.log(myNumArray);
+// console.log(myStrArray);
+
+// myNumArray.push(400);
+// myStrArray.push("lyoo");
+
+// console.log(myNumArray);
+// console.log(myStrArray);
+
+// myNumArray.push("marsliang");
+// myStrArray.push(500);
+
+// console.log(myNumArray);
+// console.log(myStrArray);
+
+// 限制所有的元素是纯数字或者字符串
+// function getArray(items: number[]): number[] {
+//   return new Array().concat(items);
+// }
+
+// function getArray(items: string[]): string[] {
+//   return new Array().concat(items);
+// }
+
+// 可以用很多类型来代替 T
+// T[] 代表数组，每个元素都是 T 类型
+function getArray<T>(items: T[]): T[] {
+  return new Array<T>().concat(items);
 }
 
-// 打印机 B
-class PrinterB {
-  pageOrientation: "portrait";
+// 调用，可以传入很多类型，代码复用
+let myNumArray = getArray<number>([100, 200, 300]);
+let myStrArray = getArray<string>(["helo", "world"]);
+let myBooleanArray = getArray([true, false]);
 
-  // 肖像画
-  printPortrait(): void {
-    console.log("printing in portrait");
-  }
+myNumArray.push(400);
+myStrArray.push("lyoo");
+// 推断出 boolean, 不推荐使用 类型“400”的参数不能赋给类型“boolean”的参数。
+// myBooleanArray.push(400);
+
+console.log(myNumArray);
+console.log(myStrArray);
+
+// function getArray1<T>(items: T): T {
+//   console.log(items.length);
+//   return T;
+// }
+
+function getArray1<T>(items: T[]): T[] {
+  console.log(items.length);
+  return items;
 }
 
-function doPrint(pt: PrinterA | PrinterB): void {
-  if (pt.pageOrientation === "landscape") {
-    pt.printLandscape();
-  } else if (pt.pageOrientation === "portrait") {
-    pt.printPortrait();
-  } else {
-    let unknownPrinter: never = pt;
-  }
-}
+// myNumArray.push("marsliang");
+// myStrArray.push(500);
 
-// 接口
-interface FullTimeEmployee {
-  empType: "FullType";
-  name: string;
-  annualSalary: number;
-}
-
-interface PartTimeEmployee {
-  empType: "PartTime";
-  name: string;
-  monthlySalary: number;
-}
-
-interface ContractEmployee {
-  empType: "Contractor";
-  name: string;
-  hourlySalary: number;
-}
-
-//using type alias
-type Employee = FullTimeEmployee | PartTimeEmployee | ContractEmployee;
-
-function getEmployeeSalary(emp: Employee): number {
-  switch (emp.empType) {
-    case "FullType":
-      return emp.annualSalary;
-    case "PartTime":
-      return emp.monthlySalary;
-    case "Contractor":
-      return emp.hourlySalary;
-    default:
-      let temp: never = emp;
-      return temp;
-  }
-}
-
-let contractor: ContractEmployee = {
-  empType: "Contractor",
-  name: "Tina",
-  hourlySalary: 34,
-};
-let sal = getEmployeeSalary(contractor);
-console.log(sal);
-
-// enum
-
-enum ShapeType {
-  TRIANGLE,
-  RECTANGLE,
-}
-
-interface RightAngledTriangle {
-  shapeType: ShapeType.TRIANGLE;
-  base: number;
-  height: number;
-  hypotenuse: number;
-}
-
-interface Square {
-  shapeType: ShapeType.RECTANGLE;
-  length: number;
-  width: number;
-}
-
-type Shape = RightAngledTriangle | Square;
-
-function getArea(shape: Shape): number {
-  switch (shape.shapeType) {
-    case ShapeType.TRIANGLE:
-      return (shape.base * shape.height) / 2;
-    case ShapeType.RECTANGLE:
-      return shape.length * shape.width;
-    default:
-      let temp: never = shape;
-      return temp;
-  }
-}
-
-let shape: Square = { shapeType: ShapeType.RECTANGLE, length: 5, width: 5 };
-let area = getArea(shape);
-console.log(area);
+console.log(myNumArray);
+console.log(myStrArray);
