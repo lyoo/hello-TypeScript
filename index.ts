@@ -1,38 +1,24 @@
-class Person {
-  private _name: string;
-  private _age: number;
+class Rectangle {
+  private w: number;
+  private h: number;
 
-  constructor(name: string, age: number) {
-    this._name = name;
-    this._age = age;
+  constructor(w: number, h: number) {
+    this.w = w;
+    this.h = h;
   }
 
-  // 读取 name
-  getName(): string {
-    return this._name;
-  }
-
-  // 设置 name
-  setName(name: string): void {
-    this._name = name;
-  }
-
-  get name(): string {
-    return this._name;
-  }
-
-  // Accessors are only available when targeting ECMAScript 5 and higher.
-  set name(name: string) {
-    this._name = name;
+  getAreaFunction() {
+    return (): number => {
+      return this.w * this.h;
+    };
   }
 }
 
-let p: Person = new Person("lyoo", 18);
-// 输出 name
-console.log(p.name);
-// console.log(p.getName());
+let rectangle = new Rectangle(2, 5);
+let areaFunction = rectangle.getAreaFunction();
+// 得到面积
+// this 是指向 rectangle 这个对象，还是调用的上下文
+// 使用箭头函数 指向 rectangle 对象
+let area = areaFunction();
 
-// 修改 name
-p.name = "marsliang";
-// p.setName("marsliang");
-console.log(p);
+console.log(area);
