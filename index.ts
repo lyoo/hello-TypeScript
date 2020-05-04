@@ -1,59 +1,74 @@
-// 函数名相同 参数不同 参数类型相同
-// 没有实现定义
-function sum(x: number, y: number): number;
-function sum(x: number, y: number, z: number): number;
-
-// 上面两种定义的组合实现
-function sum(x: number, y: number, z?: number): number {
-  console.log(typeof z);
-  if (typeof z === "undefined") {
-    return x + y;
-  } else {
-    return x + y + z;
-  }
-}
-
-let n = sum(1, 2);
-console.log(n);
-
-n = sum(1, 2, 3);
-console.log(n);
-
-// 函数名相同 参数类型不同类型
-function divide(x: number, y: number): number;
-function divide(str: string, y: number): string[];
-
-function divide(x: any, y: number): any {
+// 使用 typeof
+function show(x: number | string): void {
+  console.log(typeof x);
   if (typeof x === "number") {
-    return x / y;
-  } else if (typeof x === "string") {
-    return [x.substring(0, y), x.substring(y)];
+    console.log("It is a number ", x);
+  } else {
+    console.log("It is a string ", x);
   }
 }
 
-let n1: number = divide(6, 2);
-console.log(n1);
-let s1: string[] = divide("football", 4);
-console.log(s1);
+// show(1);
+// show("haha");
 
-// class 重载
-// 静态方法和实例方法
-class Util {
-  static divide(x: number, y: number): number;
-  static divide(str: string, y: number): string[];
+// class Person {}
+// let person = new Person();
+// console.log("typeof person: ", typeof person);
+// console.log("typeof Person: ", typeof Person);
+// console.log("typeof new String: ", typeof new String("test"));
+// console.log("typeof undefined: ", typeof undefined);
+// console.log("typeof null: ", typeof null);
 
-  static divide(x: any, y: number): any {
-    if (typeof x === "number") {
-      return x / y;
-    } else if (typeof x === "string") {
-      return [x.substring(0, y), x.substring(y)];
-    }
+// 使用 属性
+class Car {
+  start() {
+    console.log("car starting");
+  }
+
+  drive() {
+    console.log("car driving");
   }
 }
 
-// let a1: Util = new Util();
-// console.log(a1.divide(2, 1));
-// console.log(a1.divide("hello world", 4));
+class Bike {
+  start() {
+    console.log("bike starting");
+  }
 
-let c: number = Util.divide(6, 2);
-console.log(c);
+  ride() {
+    console.log("bike ridding");
+  }
+}
+
+// boolean 返回值发挥的作用是在运行时
+// vehicle is Car 发挥在编译时期
+function isCar(vehicle: Bike | Car): vehicle is Car {
+  return (vehicle as Car).drive !== undefined;
+}
+
+function move(vehicle: Bike | Car): void {
+  vehicle.start();
+
+  // 断言方式处理
+  // if ((vehicle as Car).drive) {
+  //   (vehicle as Car).drive();
+  // } else {
+  //   (vehicle as Bike).ride();
+  // }
+
+  // if (isCar(vehicle)) {
+  //   vehicle.drive();
+  // } else {
+  //   vehicle.ride();
+  // }
+
+  // 使用 instanceof
+  if (vehicle instanceof Car) {
+    vehicle.drive();
+  } else {
+    vehicle.ride();
+  }
+}
+
+move(new Car());
+move(new Bike());
