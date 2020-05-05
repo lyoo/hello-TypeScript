@@ -1,46 +1,44 @@
-class Pair<F, S> {
+interface Pair<F, S> {
   first: F;
   second: S;
-
-  constructor(first: F, second: S) {
-    this.first = first;
-    this.second = second;
-  }
-}
-// pairs 是个数组参数，数组中的每个元素是 Pair<F, S> 类型
-function getFirstArray<F, S>(pairs: Pair<F, S>[]): F[] {
-  let arr: F[] = [];
-  for (let i = 0; i < pairs.length; i++) {
-    let first: F = pairs[i].first;
-    arr.push(first);
-  }
-  return arr;
 }
 
-let numArray: Pair<number, boolean>[] = [
-  new Pair(1, true),
-  new Pair(2, false),
-  new Pair(4, true),
-];
+let p: Pair<string, number> = { first: "lyoo", second: 45 };
+console.log(p);
 
-console.log(getFirstArray(numArray));
-
-// (t: T) => boolean
-function findFirst<T>(items: T[], searchFunction: (t: T) => boolean): T {
-  for (let i = 0; i < items.length; i++) {
-    let item: T = items[i];
-    if (searchFunction(item)) {
-      return item;
-    }
-  }
-  return null;
+interface Command<T, R> {
+  id: T;
+  run(): R;
 }
 
-let items: number[] = [1, 4, 7, 9];
+let c: Command<string, number> = {
+  id: Math.random().toString(36),
+  run: function () {
+    return 3;
+  },
+};
 
-let n: number = findFirst(items, (t: number) => t % 2 === 0);
-console.log(n);
+console.log(c.id);
+console.log(c.run());
 
-let items2: string[] = ["one", "two", "three"];
-let s: string = findFirst<string>(items2, (s: string) => s.indexOf("wo") != -1);
-console.log(s);
+interface ElementChecker {
+  // 函数
+  <T>(items: T[], toBeChecked: T, atIndex: number): boolean;
+}
+
+function checkElementAt<T>(
+  elements: T[],
+  toBeChecked: T,
+  atIndex: number
+): boolean {
+  return elements[atIndex] === toBeChecked;
+}
+
+// 函数
+let checker: ElementChecker = checkElementAt;
+let items = [1, 3, 5, 7];
+let b: boolean = checker<number>(items, 5, 2);
+console.log("b: ", b);
+
+let d: boolean = checker<number>(items, 5, 3);
+console.log("d: ", d);
