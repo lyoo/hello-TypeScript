@@ -1,25 +1,73 @@
-interface Collection<T> {
-  add(t: T): void;
-  remove(t: T): void;
-  asArray(): T[];
+// 第一种
+function foo(x: number, y: number, z: number) {
+  console.log(x, y, z);
 }
 
-interface Collection1<T> extends Collection<T> {
-  getElementAt(index: number): T;
+var args: number[] = [0, 1, 2];
+
+// foo(args);
+
+// foo.apply(null, args);
+// foo.apply(void 0, args);
+
+// 断言一下
+(<any>foo)(...args);
+
+// 第二种
+function foo1(...x: number[]) {
+  console.log(JSON.stringify(x));
 }
 
-class List<T> implements Collection<T> {
+foo1(...args);
+foo1(1, 2, 3);
+
+// 第三种
+function foo2(...args: number[]): void;
+function foo2(x: number, y: number, z: number) {
+  console.log(x, y, z);
+}
+foo2(...args);
+
+// 结构 Destructuring
+var [x, y, ...remaining] = [1, 2, 3, 4];
+console.log(x, y, remaining);
+
+// Array Assignment
+var list = [1, 2];
+list = [...list, 3, 4];
+console.log(list);
+
+// Object spread
+const point2D = { x: 1, y: 2 };
+const point3D = { ...point2D, z: 3 };
+console.log(point3D);
+
+const anotherPoint3D = { x: 5, z: 4, ...point2D };
+console.log(anotherPoint3D);
+
+const yetAnotherPoint3D = { ...point2D, x: 5, z: 4 };
+console.log(yetAnotherPoint3D);
+
+const foo4 = { a: 1, b: 2, c: 0 };
+const bar = { c: 1, d: 2 };
+
+const fooBar = { ...foo4, ...bar };
+console.log(fooBar);
+
+//
+
+class List<T> {
   private data: T[];
 
-  constructor(elements: T[]) {
+  constructor(...elements: T[]) {
     this.data = elements;
   }
 
-  add(t: T): void {
+  add(t: T) {
     this.data.push(t);
   }
 
-  remove(t: T): void {
+  remove(t: T) {
     let index = this.data.indexOf(t);
     if (index > -1) {
       this.data.splice(index, 1);
@@ -31,25 +79,14 @@ class List<T> implements Collection<T> {
   }
 }
 
-let numbers: Collection<number> = new List([1, 2, 3]);
-numbers.add(4);
-numbers.remove(2);
-console.log(numbers);
+let numbers = new List<number>(1, 2, 3, 4);
+numbers.add(5);
+numbers.remove(3);
+let numArray = numbers.asArray();
+console.log(numArray);
 
-// let strings: Collection<string> = new List(["x", "y", "z"]);
-// numbers.add("a");
-// numbers.remove("b");
-// console.log(numbers);
-
-class BookList<T> extends List<T> {}
-
-let bookList: BookList<boolean> = new BookList<boolean>([true, false]);
-console.log("bookList: ", bookList);
-
-let bookList1: BookList<number> = new BookList<number>([1, 2]);
-console.log("bookList1: ", bookList1);
-
-class MovieList extends List<boolean> {}
-
-let movieList: MovieList = new MovieList([true, false]);
-console.log("movieList: ", movieList);
+let fruits = new List<string>("apple", "banana", "orange");
+fruits.add("mango");
+fruits.remove("apple");
+let fruitArray = fruits.asArray();
+console.log(fruitArray);
